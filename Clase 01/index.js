@@ -24,3 +24,4 @@ let usuarios =[
 ]
 
 console.log("hola");
+console.log(usuarios.edad)
