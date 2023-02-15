@@ -15,8 +15,10 @@ function sumar(n1, n2) {
 console.log(sumar(2, 4));
 
 // funcion flecha ()=>
+// cuando hay una sola línea no hace falta utilizar el return (Return Implícito)
+// Cuando hay solo un parametro no hace falta colocar parentesis 
 
-const restar = (n1, n2) => n1 - n2; // cuando hay una sola línea no hace falta utilizar el return (Return Implícito)
+const restar = (n1, n2) => n1 - n2; 
 
 console.log(restar(10, 4));
 
