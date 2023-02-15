@@ -1,0 +1,36 @@
+// Clases - mejor forma de escribir funciones constructoras
+// La clase es una representacion de una entidad - sirven como moldes
+
+// const producto1 = {
+// 	nombre: "iphone",
+// 	precio: 500,
+// 	stock: 30,
+// };
+// const producto2 = {
+// 	nombre: "ituper",
+// 	precio: 300,
+// 	stock: 20,
+// };
+// const producto3 = {
+// 	nombre: "isex",
+// 	precio: 200,
+// 	stock: 10,
+// };
+
+class Producto {
+	constructor(nombre, precio, stock) {
+		this.nombre = nombre;
+		this.precio = precio;
+		this.stock = stock;
+	}
+}
+
+const producto1 = new Producto("iphone", 500, 30);
+const producto2 = new Producto("ituper", 300, 20);
+const producto3 = new Producto("isex", 200, 10);
+
+console.log(producto1);
+console.log(producto2);
+console.log(producto3);
+
+// me quede en 1:34hs de la Clase 1
