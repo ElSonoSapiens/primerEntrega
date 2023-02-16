@@ -15,5 +15,4 @@ function mostrarLista(array) {
 
 // mostrarLista([]);
 
-mostrarLista([1, 3, 5]);
-
+mostrarLista([1, 3, 5, 7, 8, 9]);

@@ -1,10 +1,12 @@
 // actividad en clase
 
-// let nombre = "Diego"
-// let edad = 33
-// let precio = 1000
-// let nombreSeries = ["breakingBad","TheOffice","Jackass"]
-// let nombrePeliculas = ["Gladiador","SpiderMan", "Matrix"]
+let nombre = "Diego";
+let edad = 33;
+let precio = 1000;
+let nombreSeries = ["breakingBad", "TheOffice", "Jackass"];
+let nombrePeliculas = ["Gladiador", "SpiderMan", "Matrix"];
+
+// Cuando hay info relacionada entre si lo ideal es trabajar a traves de objetos = clave:valor
 
 let usuarios = [
 	{
@@ -27,7 +29,9 @@ console.log(usuarios);
 
 usuarios.forEach((usuario) => {
 	usuario.edad++;
-	usuario.nombreSeries.push("PeakyBlinders")
+	usuario.nombreSeries.push("PeakyBlinders");
 });
 
 console.log(usuarios);
+
+// Existen multiples maneras de llegar al mismo resultado
