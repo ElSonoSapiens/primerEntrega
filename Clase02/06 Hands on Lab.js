@@ -1,5 +1,12 @@
+// Registrador de Tickets de eventos
+
 class TicketManager {
-	#precioBaseDeGanancia = 15;
+	#precioBaseDeGanancia = 1.2;
+
+	#generarId() {
+		const id = this.eventos.length === 0 ? 1 : this.eventos[this.eventos.length - 1].id + 1;
+		return id; // se crea el id on el incremental en uno
+	}
 
 	constructor() {
 		this.eventos = [];
@@ -14,25 +21,19 @@ class TicketManager {
 			id: this.#generarId(),
 			nombre,
 			lugar,
-			precio: precio + this.#precioBaseDeGanancia,
+			precio: precio * this.#precioBaseDeGanancia,
 			capacidad,
 			fecha,
 			participantes: [],
 		};
 		this.eventos.push(evento);
 	}
-	#generarId() {
-		const id =
-			this.eventos.length === 0
-				? 1
-				: this.eventos[this.eventos.length - 1].id + 1;
-		return id;
-	}
 }
 
 const manager = new TicketManager();
-
+ 
 manager.agregarEvento("evento1", "lugar1", 50);
-manager.agregarEvento("evento2", "luga2", 75);
+manager.agregarEvento("evento2", "lugar2", 60);
+manager.agregarEvento("evento3", "lugar3", 70);
 
-console.log(manager);
+console.log(getEventos());

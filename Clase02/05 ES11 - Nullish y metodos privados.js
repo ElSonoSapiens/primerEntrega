@@ -1,4 +1,4 @@
-// -- ??
+// -- ?? => metodo nullish
 
 const numero = 0
 console.log(numero||10) // trabaja con concepto de Falsy => null - undefined - 0 - "" - NaN
