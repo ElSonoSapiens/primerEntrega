@@ -1,5 +1,5 @@
 class ProductManager {
-	#generarId() {
+	#idGenerator() {
 		const id = this.products.length === 0 ? 1 : this.products[this.products.length - 1].id + 1;
 		return id;
 	}
@@ -42,7 +42,7 @@ class ProductManager {
 			thumbnail,
 			code, // :this.#codeGenerator(),
 			stock,
-			id: this.#generarId(),
+			id: this.#idGenerator(),
 		};
 
 		if (this.products.some((pCode) => pCode.code === product.code)) {
