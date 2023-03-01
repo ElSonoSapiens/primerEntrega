@@ -1,0 +1,20 @@
+// ALMACENAR FECHA Y HORA => crear archivo y escribir fecha y hora actual.
+
+const fs = require("fs");
+
+const date = new Date().toLocaleDateString()
+const time = new Date().toLocaleTimeString()
+
+const fullDate = date+" "+time
+
+fs.writeFileSync("fechaHora.txt",fullDate,(error)=>{
+if(error) console.log(error);
+})
+
+fs.readFile("fechaHora.txt", "utf-8", (error,info) => {
+	if (error) {
+		console.log("Prueba error",error);
+	} else {
+		console.log(info);
+	}
+});
