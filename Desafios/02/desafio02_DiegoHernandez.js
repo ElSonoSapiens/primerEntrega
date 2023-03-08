@@ -1,5 +1,5 @@
 const fs = require("fs");
-const path = "Desafios/02/products.json";
+const path = "./products.json";
 
 class ProductManager {
 	constructor(path) {
@@ -37,15 +37,17 @@ class ProductManager {
 	};
 
 	updateProduct = async (id, obj) => {
-		const products = await this.getProducts();
-		const indexProduct = products.findIndex((p) => p.id === id);
-		if (indexProduct === -1) {
-			return console.log("product not found");
+		const productsFile = await this.getProducts();
+		const product = productsFile.find((p) => p.id === idProd);
+		if (!product) {
+			return "Product not found";
+		} else {
+			const updatedProduct = { ...product, ...obj };
+			const productIndex = productsFile.findIndex((p) => p.id === idProd);
+			productsFile.splice(productIndex, 1, updatedProduct);
+			await fs.promises.writeFile(this.path, JSON.stringify(productsFile));
+			return "Product updated";
 		}
-		const productUpdated = { ...products[indexProduct], ...obj };
-		products.splice(indexProduct, 1, productUpdated);
-		await fs.promises.writeFile(this.path, JSON.stringify(products));
-		return console.log("product updated");
 	};
 
 	deleteProducts = async () => {
@@ -53,7 +55,7 @@ class ProductManager {
 			await fs.promises.unlink(this.path);
 			return "products deleted";
 		} else {
-			return "file doesn't exist";
+			return "products doesn't found";
 		}
 	};
 

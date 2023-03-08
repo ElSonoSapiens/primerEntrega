@@ -1,0 +1,15 @@
+1 => NPM init -y
+
+2 NPM i express
+
+3 "type":"module"
+
+4 app.listen(8080,()=>{
+  console.log("Escuchando al puerto 8080");
+})
+
+5 => app.get("/",(req,res)=>{
+  res.send("Bienvenidos")
+})
+
+6 => product manager
