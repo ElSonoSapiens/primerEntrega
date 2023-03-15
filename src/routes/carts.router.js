@@ -7,11 +7,13 @@ const router = Router();
 
 const CartManager = new ManagerCart (__dirname+"/carts.json")
 
+/*
 // crear carrito
 router.post("/", (req, res) => {
 	const newCart = await CartManager.createCart()
   res.json = ({cart:newCart})
 });
+*/
 
 // buscar carrito
 router.get("/:cid", async (req, res) => {
