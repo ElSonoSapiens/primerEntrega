@@ -10,39 +10,109 @@ export default class ProductManager {
 			const products = await fs.promises.readFile(this.path, "utf-8");
 			return JSON.parse(products);
 		} else {
+			console.log("file doesn't exist");
 			return [];
 		}
 	}
 
-	async getProductsById(idProd) {
+	async getProductById(idProd) {
 		const productsFile = await this.getProducts();
-		const product = productFile.find;
+		const product = productsFile.find((p) => p.id === idProd);
+		if (product) {
+			return product;
+		} else {
+			return "Product not found";
+		}
 	}
 
-	async createProducts(obj) {
+	async addProduct(obj) {
 		const productsFile = await this.getProducts();
-		const id = this.#createId(productsFile);
+		const id = this.#idGenerator(productsFile);
 		const newProduct = { id, ...obj };
 		productsFile.push(newProduct);
-		await fs.promises.writeFile(this.path.JSON.stringify(productsFile));
+		await fs.promises.writeFile(this.path, JSON.stringify(productsFile));
 		return newProduct;
 	}
 
-	#createId(products) {
-		let id;
-		if (product.lenght === 0) {
-			id = 1;
+	async updateProduct(idProd, obj) {
+		const productsFile = await this.getProducts();
+		const product = productsFile.find((p) => p.id === idProd);
+		if (!product) {
+			return "Product not found";
 		} else {
-			id = products[products.lenght - 1].id + 1;
+			const updatedProduct = { ...product, ...obj };
+			const productIndex = productsFile.findIndex((p) => p.id === idProd);
+			productsFile.splice(productIndex, 1, updatedProduct);
+			await fs.promises.writeFile(this.path, JSON.stringify(productsFile));
+			return "Product updated";
 		}
-		return id;
 	}
 
 	async deleteProducts() {
 		if (existsSync(this.path)) {
 			await fs.promises.unlink(this.path);
+			return "Products deleted";
 		} else {
-			return "There is no products";
+			return "No products found";
 		}
 	}
+
+	async deleteProductById(idProd) {
+		const productsFile = await this.getProducts();
+		const productIndex = productsFile.findIndex((p) => p.id === idProd);
+		if (productIndex === -1) {
+			return "Product doesn't exist";
+		} else {
+			productsFile.splice(productIndex, 1);
+			await fs.promises.writeFile(this.path, JSON.stringify(productsFile));
+			return "Product deleted";
+		}
+	}
+
+	#idGenerator = (products) => {
+		let id = products.length === 0 ? 1 : products[products.length - 1].id + 1;
+		return id;
+	};
 }
+
+
+const product1 = {
+	title: "Jamon",
+	description: "Mediterraneo",
+	price: 500,
+	thumbnail: "thumbnail",
+	code: 1,
+	stock: 10,
+};
+const product2 = {
+	title: "Queso",
+	description: "Suizo",
+	price: 600,
+	thumbnail: "thumbnail",
+	code: 2,
+	stock: 15,
+};
+const product3 = {
+	title: "Pan",
+	description: "Arabe",
+	price: 750,
+	thumbnail: "thumbnail",
+	code: 3,
+	stock: 20,
+};
+const product4 = {
+	title: "Mayonesa",
+	description: "Orgánica",
+	price: 430,
+	thumbnail: "thumbnail",
+	code: 4,
+	stock: 25,
+};
+const product5 = {
+	title: "Huevo",
+	description: "De granja",
+	price: 150,
+	thumbnail: "thumbnail",
+	code: 5,
+	stock: 50,
+};
